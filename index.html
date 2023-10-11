@@ -64,9 +64,7 @@
             </li>
           </ul>
           <span class="navbar-text ml-5">
-            <a data-toggle="modal" data-target="#loginModal"
-              ><span class="fa fa-sign-in"></span>Login</a
-            >
+            <a id="loginBtn"><span class="fa fa-sign-in"></span>Login</a>
           </span>
         </div>
       </div>
@@ -86,11 +84,13 @@
             <form action="">
               <div class="form-row">
                 <div class="form-group col-sm-4">
+                
                   <label class="sr-only" for="loginemail">Email address</label>
                   <input
                     type="email"
                     id="loginemail"
                     class="form-control form-control-sm mr-1"
+                    placeholder="Email"
                   />
                 </div>
                 <div class="form-group col-sm-4">
@@ -100,6 +100,7 @@
                     name=""
                     id="loginpassword"
                     class="form-control form-control-sm mr-1"
+                    placeholder="password"
                   />
                 </div>
                 <div class="col-sm-auto">
@@ -151,8 +152,7 @@
             <button
               type="button"
               class="btn btn-block btn-warning mt-5"
-              data-toggle="modal"
-              href="#form-modal"
+              id="formBtn"
             >
               Reserve Table
             </button>
@@ -257,7 +257,7 @@
       </div>
     </div>
 
-    <div class="modal fade" role="dialog" tabindex="-1" id="form-modal">
+    <div class="modal fade" role="dialog" id="formModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -460,22 +460,37 @@
       $(document).ready(function () {
         $("#mycarousel").carousel({ interval: 2000 });
         $("#carouselButton").click(function () {
-            if($('#carouselButton').children('span').hasClass('fa-pause')) {
-                $("#mycarousel").carousel("pause");
-                $('#carouselButton').children('span').removeClass('fa-pause');
-                $('#carouselButton').children('span').addClass('fa-play');
-            }
-            else  if($('#carouselButton').children('span').hasClass('fa-play')){
-                $("#mycarousel").carousel("cycle");
-                $('#carouselButton').children('span').removeClass('fa-play');
-                $('#carouselButton').children('span').addClass('fa-pause');
-            }
-            });
-
+          if ($("#carouselButton").children("span").hasClass("fa-pause")) {
+            $("#mycarousel").carousel("pause");
+            $("#carouselButton").children("span").removeClass("fa-pause");
+            $("#carouselButton").children("span").addClass("fa-play");
+          } else if (
+            $("#carouselButton").children("span").hasClass("fa-play")
+          ) {
+            $("#mycarousel").carousel("cycle");
+            $("#carouselButton").children("span").removeClass("fa-play");
+            $("#carouselButton").children("span").addClass("fa-pause");
+          }
         });
-        // $("#carousel-play").click(function () {
-        //   $("#mycarousel").carousel("cycle");
-        // });
+      });
+
+      // $("#carousel-play").click(function () {
+      //   $("#mycarousel").carousel("cycle");
+      // });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $("#loginBtn").click(function () {
+          $("#loginModal").modal();
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $('#formBtn').click(function () {
+          $('#formModal').modal();
+        });
+      });
     </script>
   </body>
 </html>
